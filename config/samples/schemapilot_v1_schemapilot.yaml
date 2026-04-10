@@ -1,0 +1,31 @@
+apiVersion: schemapilot.schemapilot.com/v1
+kind: SchemaPilot
+metadata:
+  name: schemapilot-sample
+  namespace: schemapilot-system
+spec:
+  databaseType: Oracle
+  connectionString:
+    name: db-connection
+    key: connectionString
+  repository:
+    url: https://api.github.com
+    owner: gjduggins
+    repo: schema-pilot
+    branch: main
+    token:
+      name: github-token
+      key: token
+  schemaFiles:
+    - name: DRIVERS.sql
+      version: "v1.0.2"
+      objectType: Table
+    - name: RACES.sql
+      version: "v1.0.3"
+      objectType: Table
+    - name: GET_INFO.pks
+      version: "v1.0.4"
+      objectType: PackageHeader
+    - name: GET_INFO.pkb
+      version: "v1.0.4"
+      objectType: PackageBody

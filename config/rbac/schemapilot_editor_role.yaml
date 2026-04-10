@@ -1,0 +1,33 @@
+# This rule is not used by the project schemapilot itself.
+# It is provided to allow the cluster admin to help manage permissions for users.
+#
+# Grants permissions to create, update, and delete resources within the schemapilot.schemapilot.com.
+# This role is intended for users who need to manage these resources
+# but should not control RBAC or manage permissions for others.
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: schemapilot
+    app.kubernetes.io/managed-by: kustomize
+  name: schemapilot-editor-role
+rules:
+- apiGroups:
+  - schemapilot.schemapilot.com
+  resources:
+  - schemapilots
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - schemapilot.schemapilot.com
+  resources:
+  - schemapilots/status
+  verbs:
+  - get
